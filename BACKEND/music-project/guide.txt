@@ -1,0 +1,10 @@
+Song repository
+    obtertodos = getAll
+
+    obterPorId = getById
+
+    adicionar = add 
+
+    deletar = delete
+
+    atualizar = update
