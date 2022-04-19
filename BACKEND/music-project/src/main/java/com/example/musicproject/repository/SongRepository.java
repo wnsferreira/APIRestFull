@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.Optional;
 
 import com.example.musicproject.model.Song;
+import com.example.musicproject.model.exception.ResourceNotFoundException;
 
 import org.springframework.stereotype.Repository;
 
@@ -57,11 +58,20 @@ public class  SongRepository {
         songs.removeIf(song -> song.getId() == id);
     }
 
+    /**
+     * Método para atualizar a lista.
+     * @param musica que será atualizado.
+     * @return Retorna os dados da música após atualizar a lista.
+     */
     public Song update(Song song) {
         Optional<Song> songFound = getById(song.getId());
 
         if(songFound.isEmpty()){
-            throw new InputMismatchException("Música não encontrada.");
+
+            // Com tratamento de erro
+            throw new ResourceNotFoundException("Música não encontrada.");
+
+            // throw new InputMismatchException("Música não encontrada.");
         }
 
         delete(song.getId());
